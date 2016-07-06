@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sypseguros" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="eaa2a2d4-2b95-46bf-9a95-98334046849f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="consulta" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select evento.id, tipoevento.nome, apolice.apolice, apolice.sypcode from evento
+left join tipoevento on evento.tipoevento_fk = tipoevento.id
+left join apolice on apolice.id=evento.apolice_fk
+where (1=1)]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="apolice" class="java.lang.String"/>
+	<field name="sypcode" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="79fe65c7-81ab-4c95-88e7-f1688e8d28e7" x="136" y="20" width="242" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Eventos]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="3cba1c6f-60c1-4d35-ace8-73b4f99c8f3d" x="0" y="0" width="58" height="56"/>
+				<imageExpression><![CDATA["C:\\Users\\Renan Rodrigues Ramo\\Documents\\Projteto - SYP\\sypweb\\SYPweb\\web\\includes\\img\\syp_img.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="1a476a8a-bbeb-490b-89bf-6d1a5802da61" x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="767c5db4-8662-4155-b2c4-18ac7d78e18c" x="262" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apolice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="090ee185-ad97-46d6-b546-51afdaa9b6df" x="116" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Evento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff43319c-42ce-4c8e-8d51-e847f01515d4" x="-10" y="1" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="95f893a5-4a51-4106-b791-9fa239947ece" x="414" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SYP Code]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a5d90455-1521-4700-826c-24408319de57" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8396c043-38c7-4a26-9c0f-45885e5521b1" x="116" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="aa18e141-098d-4502-a72a-bd44776da2dd" x="262" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{apolice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6de46c7c-d6da-4c49-939a-19e859f00077" x="414" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sypcode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="78d1a662-68b1-492a-a6bf-d599bfa2bc96" x="434" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d325f0fb-a893-4a96-8926-bb954fbde8f2" x="514" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="137" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement uuid="9aee1d79-c6b1-447c-8dc8-340192eedb2d" x="0" y="0" width="554" height="137"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="None"/>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{apolice}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nome}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{id}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>
